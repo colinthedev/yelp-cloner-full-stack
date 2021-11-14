@@ -1,0 +1,28 @@
+.custom-button {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  color: #fdfdfd;
+  margin: auto;
+  min-width: 165px;
+  width: auto;
+  height: 40px;
+  background-color: #0A0A0A;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #fdfdfd;
+    color: #0A0A0A;
+    border: 1px solid #0A0A0A;
+}
+
+.no-background {
+  font-size: 15px;
+  color: #0A0A0A;
+  background: transparent;
+  border: none;
+}
+
