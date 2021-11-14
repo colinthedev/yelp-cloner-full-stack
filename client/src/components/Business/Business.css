@@ -13,7 +13,8 @@
 }
 
 .Business:hover {
-  border: 1px solid #ffc900;
+  border: 1.5px solid #0A0A0A;
+  transform: scale(1.05);
 }
 
 .Business .image-container {
