@@ -1,0 +1,11 @@
+
+.rocket-img {
+    left: 0;
+    bottom: 0;
+    transform: rotate(-45deg);
+    z-index: 200;
+}
+
+.moon-img {
+    bottom: -1%;
+}

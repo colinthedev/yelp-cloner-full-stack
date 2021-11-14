@@ -1,0 +1,44 @@
+/* Font */
+.sign-in-font-heading {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #0A0A0A;
+    text-align: center;
+}
+
+.sign-in-font {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #0A0A0A;
+    text-align: center;
+}
+
+.light-font {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.sign-in-top {
+    height: 50vh;
+    width: 100vw;
+    background-color: #0A0A0A;
+}
+
+.planet-img {
+    top: 5%;
+    right: 3%;
+}
+
+.stars-img {
+    object-fit: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    z-index: 100;
+}
+
+.underline {
+    text-decoration: solid;
+}
