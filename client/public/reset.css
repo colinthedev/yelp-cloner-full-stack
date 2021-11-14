@@ -41,3 +41,16 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+html {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+}

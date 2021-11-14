@@ -2,36 +2,62 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
-import BusinessList from '../BusinessList/BusinessList';
-import SearchBar from '../SearchBar/SearchBar';
-import Yelp from '../../util/yelp';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Navmenu from '../Nav/Nav';
+import Signin from '../../Pages/Sign-in/Sign-in';
+import Signup from '../../Pages/Sign-up/Sign-up';
+import Home from '../../Pages/Home/Home';
 import Footer from '../Footer/Footer';
-// import React, { Component } from 'react';
-// import React, { useEffect, useState } from 'react'
 
+import { auth, createUserProfileDocument } from '../../util/firebase/firebase.utils';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      businesses: [],
-    };
+  constructor() {
+    super();
 
-    this.searchYelp = this.searchYelp.bind(this);
+    this.state = {
+      currentUser: null
+    }
   }
 
-  searchYelp(term, location, sortBy) {
-    Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-      this.setState({ businesses: businesses })
+  unsubscribeFromAuth = null;
+
+  //onAuthStateChanged returns method from firebase.Unsubscribe
+  componentDidMount() { // firebase call auth from firebase.utils
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+          console.log(this.state)
+        });
+      } else {
+        this.setState({ currentUser: userAuth })
+      }
     })
   }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
   render() {
     return (
       <div className="App">
-        <Navmenu />
-        <SearchBar searchYelp={this.searchYelp} />
-        <BusinessList businesses={this.state.businesses} />
+        <BrowserRouter>
+        <Navmenu currentUser={this.state.currentUser} />
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/signin' element={<Signin />} />
+            <Route path='/signup' element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
         <Footer />
       </div>
     )
@@ -39,3 +65,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+// Home -> SearchBar
+    //  -> BusinessList
