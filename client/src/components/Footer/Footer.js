@@ -22,32 +22,32 @@ function Footer() {
                     <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
                         <h5 className="Header-font">About</h5>
                         <ul className="list-unstyled mb-0">
-                            <li>
-                                <a href="#!" className="list-font">About Yelp</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">About Yelp</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Careers</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Careers</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Investor Relations</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Investor Relations</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Trust & Safety</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Trust & Safety</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Content Guidelines</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Content Guidelines</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Accessibility Statement</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Accessibility Statement</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Terms of Service</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Terms of Service</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Privacy Policy</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Privacy Policy</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Ad Choices</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Ad Choices</a>
                             </li>
                         </ul>
                     </div>
@@ -55,35 +55,35 @@ function Footer() {
                     <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
                         <h5 className="Header-font mb-0">Discover</h5>
                         <ul className="list-unstyled">
-                            <li>
-                                <a href="#!" className="list-font">Yelp Project Cost Guides</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Yelp Project Cost Guides</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Collections</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Collections</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Talk</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Talk</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Events</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Events</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">The Local Yelp</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">The Local Yelp</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Yelp Blog</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Yelp Blog</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Support</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Support</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Yelp Mobile</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Yelp Mobile</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Developers</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Developers</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">RSS</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">RSS</a>
                             </li>
                         </ul>
                     </div>
@@ -91,26 +91,26 @@ function Footer() {
                     <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
                         <h5 className="Header-font">Yelp for Business</h5>
                         <ul className="list-unstyled mb-0">
-                            <li>
-                                <a href="#!" className="list-font">Claim your Business Page</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Claim your Business Page</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Advertise on Yelp</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Advertise on Yelp</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Yelp for Restaurant Owners</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Yelp for Restaurant Owners</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Table Management</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Table Management</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Business Success Stories</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Business Success Stories</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Business Support</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Business Support</a>
                             </li>
-                            <li>
-                                <a href="#!" className="list-font">Yelp Blog for Business</a>
+                            <li className="footer-underline">
+                                <a href="#!" className="list-font footer-underline">Yelp Blog for Business</a>
                             </li>
                         </ul>
                     </div>

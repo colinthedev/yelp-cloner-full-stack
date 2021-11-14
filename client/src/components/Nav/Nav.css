@@ -14,10 +14,20 @@
     padding: 0;
 }
 
+.dropdown-menu {
+    min-width: 17rem;
+}
+
 .dropdown-menu.show {
     right: 20%;
     left: auto;
     padding: 1rem;
+    margin-top: .25rem;
+}
+
+.options {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 .link-wrapper {

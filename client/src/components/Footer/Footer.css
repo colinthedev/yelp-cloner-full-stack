@@ -1,10 +1,10 @@
-li,a {
+.footer-underline {
   text-decoration: none;
   -webkit-text-decoration: none;
 }
 
-li:hover,
-a:hover {
+.footer-underline:hover,
+.footer-underline:hover {
   color: rgb(156, 155, 161);
   text-decoration: underline;
 }
