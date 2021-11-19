@@ -1,31 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import BusinessList from '../../../src/components/BusinessList/BusinessList';
 import SearchBar from '../../../src/components/SearchBar/SearchBar';
 import Yelp from '../../util/yelp';
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            businesses: [],
-        };
+const Home = () => {
+    const [businesses, setBusinesses] = useState([]);
 
-        this.searchYelp = this.searchYelp.bind(this);
-    }
+    const searchYelp = (term, location) => {
+        Yelp.searchYelp(term, location)
+            .then(businesses => {
+                setBusinesses(businesses);
+            });
+    };
 
-    searchYelp(term, location, sortBy) {
-        Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-            this.setState({ businesses: businesses })
-        })
-    }
-    render() {
-        return (
-            <>
-                <SearchBar searchYelp={this.searchYelp} />
-                <BusinessList businesses={this.state.businesses} />
-            </>
-        )
-    }
-}
+    return (
+        <>
+            <SearchBar searchYelp={searchYelp} />
+            <BusinessList business={businesses} />
+        </>
+    )
+};
 
 export default Home;

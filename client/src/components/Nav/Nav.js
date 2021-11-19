@@ -12,7 +12,6 @@ import Aboutme from './img/Aboutme.svg';
 import Findfriends from './img/Findfriends.svg';
 import Accountsetting from './img/Accountsetting.svg';
 
-
 const Navmenu = ({ currentUser }) => (
     <div className='App tc f3'>
         <Navbar bg='light' expand='lg'>
@@ -26,7 +25,7 @@ const Navmenu = ({ currentUser }) => (
                     <Nav.Link className='link-font' href="#link">Events</Nav.Link>
                     <Nav.Link className='link-font' href="#link">Talk</Nav.Link>
                 </Nav>
-                <div className="ml-auto right-nav-wrap">
+                <div className="d-flex flex-row justify-content-center align-items-center ml-auto">
                     <img className='nav-img me-2' src={Message}></img>
                     <img className='nav-img me-2' src={Bell}></img>
                     <img className='nav-img-lrg' src={Userprofile}></img>
@@ -36,15 +35,15 @@ const Navmenu = ({ currentUser }) => (
                             <div className="d-flex flex-column">
                                 {
                                     currentUser ? 
-                                        <span>{currentUser.displayName}</span> 
-                                        :
-                                        <span>No User Found</span>
+                                    <span>{currentUser.displayName}</span> 
+                                    :
+                                    <span>No User Found</span>
                                 }
                                 {
                                     currentUser ?
-                                        <span>{currentUser.email}</span>
-                                        :
-                                        <span>No Email Found</span>
+                                    <span>{currentUser.email}</span>
+                                    :
+                                    <span>No Email Found</span>
                                 }
                             </div>
                         </div>
