@@ -2,6 +2,7 @@
     margin-left: auto;
 }
 
+/* Overides */
 .nav-link {
     color: #bbbbbb;
     padding: 0;
@@ -11,12 +12,31 @@
     min-width: 17rem;
 }
 
+.navbar-toggler {
+    margin-right: .5rem;
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.05rem;
+}
+
+.navbar-toggler-icon {
+    width: 1em;
+    height: 1em;
+}
+
 .dropdown-menu.show {
-    right: 20%;
-    left: auto;
+    left: -2rem;
     padding: 1rem;
     margin-top: .25rem;
 }
+
+.navbar-collapse {
+    padding: .5rem;
+    padding: 0 .5rem 0 .5rem;
+}
+/* Overides End */
 
 .options {
     font-family: 'Roboto', sans-serif;
@@ -50,4 +70,11 @@
     display: block;
     height: 32px;
     width: 32px;
+}
+
+@media only screen and (min-width: 768px) {
+    .dropdown-menu.show {
+        right: 20%;
+        left: auto;
+    }
 }

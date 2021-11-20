@@ -4,7 +4,7 @@ import './Nav.css';
 import { Link } from 'react-router-dom';
 import { auth } from '../../util/firebase/firebase.utils';
 
-import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Bell from './img/Bell.svg';
 import Message from './img/Message.svg';
 import Userprofile from './img/Userprofile.svg';
@@ -16,16 +16,17 @@ const Navmenu = ({ currentUser }) => (
     <div className='App tc f3'>
         <Navbar bg='light' expand='lg'>
             <a className="text-decoration-none" href="/">
-                <Navbar.Brand className="mx-5">Yelp-Clone</Navbar.Brand>
+                <Navbar.Brand className="mx-2 mx-lg-5">Yelp-Clone</Navbar.Brand>
             </a>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
+            <hr></hr>
                 <Nav className='ml-5'>
                     <Nav.Link className='link-font' href="#home">Write a Review</Nav.Link>
                     <Nav.Link className='link-font' href="#link">Events</Nav.Link>
                     <Nav.Link className='link-font' href="#link">Talk</Nav.Link>
                 </Nav>
-                <div className="d-flex flex-row justify-content-center align-items-center ml-auto">
+                <div className="d-flex flex-row justify-content-lg-center align-items-center ml-auto">
                     <img className='nav-img me-2' src={Message}></img>
                     <img className='nav-img me-2' src={Bell}></img>
                     <img className='nav-img-lrg' src={Userprofile}></img>
@@ -49,7 +50,7 @@ const Navmenu = ({ currentUser }) => (
                         </div>
                         <NavDropdown.Divider />
                         <div className="link-wrapper my-1">
-                            <img className="link-font-sml me-2 inline-block" src={Aboutme}></img><span className="link-font-sml">About Me</span>
+                            <img className="link-font-sml me-2 inline-block" src={Aboutme}></img><a className="link-font-sml"><Link className="link-font-sml" to="/profile">About Me</Link></a>
                         </div>
                         <div className="link-wrapper my-1">
                             <img className="link-font-sml me-2 inline-block" src={Findfriends}></img><span className="link-font-sml">Find Friends</span>
