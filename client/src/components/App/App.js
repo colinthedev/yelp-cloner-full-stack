@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Navmenu from '../Nav/Nav';
+import Profile from '../../Pages/Profile/Profile';
 import Home from '../../Pages/Home/Home';
 import Signin from '../../Pages/Sign-in/Sign-in';
 import Signup from '../../Pages/Sign-up/Sign-up';
-import Profile from '../../Pages/Profile/Profile';
 import Footer from '../Footer/Footer';
 
 import { auth, createUserProfileDocument } from '../../util/firebase/firebase.utils';
