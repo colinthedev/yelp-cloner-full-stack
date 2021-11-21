@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from "../../../src/components/App/App";
 import './Nav.css';
 
 import { Link } from 'react-router-dom';
@@ -12,8 +13,9 @@ import Aboutme from './img/Aboutme.svg';
 import Findfriends from './img/Findfriends.svg';
 import Accountsetting from './img/Accountsetting.svg';
 
-const Navmenu = ( {currentUser} ) => {
-    console.log(currentUser)
+const Navmenu = ({}) => {
+    const currentUser = useContext(UserContext)
+
     return (
         <div className='tc f3'>
             <Navbar bg='light' expand='lg'>

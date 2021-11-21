@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './Profile.css';
 
-const Profile = ({ currentUser }) => {
+import { UserContext } from "../../../src/components/App/App";
+
+const Profile = ({}) => {
+    const currentUser = useContext(UserContext)
+
     return (
         <div className="container-flex">
             <div className="top-content-container w-100">
@@ -16,9 +20,9 @@ const Profile = ({ currentUser }) => {
                                     <div>
                                         {
                                             currentUser ?
-                                            <h2>{currentUser.displayName}</h2>
-                                            :
-                                            <h2>No User Found</h2>
+                                                <h2>{currentUser.displayName}</h2>
+                                                :
+                                                <h2>No User Found</h2>
                                         }
                                     </div>
                                     <div className="d-flex flex-column flex-lg-row">
@@ -61,12 +65,12 @@ const Profile = ({ currentUser }) => {
             <div className="bot-content-container px-1 py-4 custom-padding">
                 <div className="bot-content-wrapper mx-lg-auto d-flex flex-column flex-lg-row">
                     <div className="sidebar d-flex flex-column mx-auto mx-lg-0 mt-lg-5 py-lg-2 px-2">
-                        {
-                            currentUser ?
-                                <h4 className="mb-3">{currentUser.displayName}</h4>
-                                :
-                                <h4 className="mb-3">No User Found</h4>
-                        }
+                            {
+                                currentUser ?
+                                    <h4 className="mb-3">{currentUser.displayName}</h4>
+                                    :
+                                    <h4 className="mb-3">No User Found</h4>
+                            }
                         <ul className="p-0">
                             <a className="cursor-pointer text-decoration-none">
                                 <li className="d-flex flex-row sidebar-item sidebar-list-font">
@@ -144,7 +148,7 @@ const Profile = ({ currentUser }) => {
                                         <h3 className="heading-red mb-1">{currentUser.displayName}</h3>
                                         :
                                         <h3 className="heading-red mb-1">No User Found</h3>
-                                } 
+                                }
                             </h3>
                             <h5 className="about-subHeading mt-2">Yelping Since</h5>
                             <p className="font-14">Some month</p>
