@@ -1,136 +1,133 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Navmenu from '../Nav/Nav';
-import Profile from '../../Pages/Profile/Profile';
-import Home from '../../Pages/Home/Home';
-import Signin from '../../Pages/Sign-in/Sign-in';
-import Signup from '../../Pages/Sign-up/Sign-up';
-import Footer from '../Footer/Footer';
-
-import { auth, createUserProfileDocument } from '../../util/firebase/firebase.utils';
-
-class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null
-    }
-  }
-
-  unsubscribeFromAuth = null;
-
-  //onAuthStateChanged returns method from firebase.Unsubscribe
-  componentDidMount() { // firebase call auth from firebase.utils
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          });
-        });
-      } else {
-        this.setState({ currentUser: userAuth })
-      }
-    })
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <Navmenu currentUser={this.state.currentUser} />
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route path='/signin' element={<Signin />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/profile' element={<Profile />} />
-          </Routes>
-        </BrowserRouter>
-        <Footer />
-      </div>
-    )
-  }
-}
-
-export default App;
-
-
-
-
-
-
 // import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import React, { useState, useEffect} from "react";
+// import React from 'react';
 // import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Navmenu from '../Nav/Nav';
+// import Profile from '../../Pages/Profile/Profile';
+// import Home from '../../Pages/Home/Home';
 // import Signin from '../../Pages/Sign-in/Sign-in';
 // import Signup from '../../Pages/Sign-up/Sign-up';
-// import Home from '../../Pages/Home/Home';
 // import Footer from '../Footer/Footer';
 
 // import { auth, createUserProfileDocument } from '../../util/firebase/firebase.utils';
 
-// function App() {
-//   const [currentUser, setCurrentUser] = useState(null)
+// class App extends React.Component {
+//   constructor() {
+//     super();
 
-//   let unsubscribeFromAuth = null;
-  
+//     this.state = {
+//       currentUser: null
+//     }
+//   }
+
+//   unsubscribeFromAuth = null;
+
 //   //onAuthStateChanged returns method from firebase.Unsubscribe
-//   useEffect((currentUser) => {
-//     unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+//   componentDidMount() { // firebase call auth from firebase.utils
+//     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 //       if (userAuth) {
 //         const userRef = await createUserProfileDocument(userAuth);
 
 //         userRef.onSnapshot(snapShot => {
-//           setCurrentUser({
+//           this.setState({
 //             currentUser: {
 //               id: snapShot.id,
 //               ...snapShot.data()
 //             }
 //           });
-//           console.log(setCurrentUser)
 //         });
 //       } else {
-//         setCurrentUser({ currentUser: userAuth })
+//         this.setState({ currentUser: userAuth })
 //       }
 //     })
-//     return () => {
-//       auth = auth.unsubscribeFromAuth();
-//     }
-//   }, [])
+//   }
 
-//   return (
-//     <div className="App">
-//       <BrowserRouter>
-//       <Navmenu currentUser={currentUser} />
-//         <Routes>
-//           <Route exact path='/' element={<Home />} />
-//           <Route path='/signin' element={<Signin />} />
-//           <Route path='/signup' element={<Signup />} />
-//         </Routes>
-//       </BrowserRouter>
-//       <Footer />
-//     </div>
-//   )
+//   componentWillUnmount() {
+//     this.unsubscribeFromAuth();
+//   }
+
+
+//   render() {
+//     return (
+//       <div className="App">
+//         <BrowserRouter>
+//           <Navmenu currentUser={this.state.currentUser} />
+//           <Routes>
+//             <Route exact path='/' element={<Home />} />
+//             <Route path='/signin' element={<Signin />} />
+//             <Route path='/signup' element={<Signup />} />
+//             <Route path='/profile' element={<Profile />} currentUser={this.state.currentUser} />
+//           </Routes>
+//         </BrowserRouter>
+//         <Footer />
+//       </div>
+//     )
+//   }
 // }
 
 // export default App;
 
-// Home -> SearchBar
-    //  -> BusinessList
 
+
+
+
+
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import React, { useState, useEffect} from "react";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { auth, createUserProfileDocument } from "../../util/firebase/firebase.utils";
+import Navmenu from '../Nav/Nav';
+import Home from '../../Pages/Home/Home';
+import Signin from '../../Pages/Sign-in/Sign-in';
+import Signup from '../../Pages/Sign-up/Sign-up';
+import Profile from '../../Pages/Profile/Profile';
+import Footer from '../Footer/Footer';
+
+
+const App = () => {
+  const [currentUser, setuser] = useState(null)
+
+  let unsubscribeFromAuth = null;
+
+  useEffect(() => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          setuser({
+              id: snapShot.id,
+              ...snapShot.data()
+          })
+        })
+      } else {
+        setuser({ currentUser: userAuth })
+      }
+    })
+
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, [])
+
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Navmenu currentUser={currentUser} />
+        <hr className="p-0 m-0"></hr>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/profile' element={<Profile />} currentUser={currentUser} />
+        </Routes>
+      </BrowserRouter>
+      <Footer />
+    </div>
+  )
+}
+
+export default App;

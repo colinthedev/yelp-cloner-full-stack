@@ -12,7 +12,8 @@ import Aboutme from './img/Aboutme.svg';
 import Findfriends from './img/Findfriends.svg';
 import Accountsetting from './img/Accountsetting.svg';
 
-const Navmenu = ({ currentUser }) => {
+const Navmenu = ( {currentUser} ) => {
+    console.log(currentUser)
     return (
         <div className='tc f3'>
             <Navbar bg='light' expand='lg'>

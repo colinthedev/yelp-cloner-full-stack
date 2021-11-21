@@ -1,23 +1,7 @@
-import {React, useState, useEffect} from 'react';
+import React from 'react';
 import './Profile.css';
 
-import { auth } from '../../util/firebase/firebase.utils';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-
-const Profile = ({ currUser }) => {
-    const [currentUser, setCurrentUser] = useState('')
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(currentUser => {
-            setCurrentUser(currentUser)
-        })
-
-        return unsubscribe
-    }, [])
-    console.log(currentUser)
-    
+const Profile = ({ currentUser }) => {
     return (
         <div className="container-flex">
             <div className="top-content-container w-100">
@@ -79,7 +63,7 @@ const Profile = ({ currUser }) => {
                     <div className="sidebar d-flex flex-column mx-auto mx-lg-0 mt-lg-5 py-lg-2 px-2">
                         {
                             currentUser ?
-                                <h4 className="mb-3">{currentUser.email}</h4>
+                                <h4 className="mb-3">{currentUser.displayName}</h4>
                                 :
                                 <h4 className="mb-3">No User Found</h4>
                         }
@@ -157,7 +141,7 @@ const Profile = ({ currUser }) => {
                             <h3 className="heading-red mb-1 break-word">About dasdasdasddadsadadsada
                                 {
                                     currentUser ?
-                                        <h3 className="heading-red mb-1">{currentUser.email}</h3>
+                                        <h3 className="heading-red mb-1">{currentUser.displayName}</h3>
                                         :
                                         <h3 className="heading-red mb-1">No User Found</h3>
                                 } 
