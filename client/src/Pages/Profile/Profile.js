@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import { useUserContext, useUserContextUpdate, useUserNameUpdate } from '../../../src/util/Context/UserContext';
 import './Profile.css';
 
-import { useTheme } from '../../../src/util/Context/UserContext';
-
 const Profile = ({}) => {
-    const currentUser = useTheme();
+    const currentUser = useUserContext(); // Current user
+    const sliceDisplayName = useUserNameUpdate(); // Window width less than (width) ? update displayName length
 
     return (
         <div className="container-flex">
@@ -20,9 +20,9 @@ const Profile = ({}) => {
                                     <div>
                                         {
                                             currentUser ?
-                                                <h2>{currentUser.displayName}</h2>
+                                                <h2>{sliceDisplayName(currentUser)}</h2>
                                                 :
-                                                <h2>No User Found</h2>
+                                                <h2>No User</h2>
                                         }
                                     </div>
                                     <div className="d-flex flex-column flex-lg-row">
@@ -69,7 +69,7 @@ const Profile = ({}) => {
                                 currentUser ?
                                     <h4 className="mb-3">{currentUser.displayName}</h4>
                                     :
-                                    <h4 className="mb-3">No User Found</h4>
+                                    <h4 className="mb-3">No User</h4>
                             }
                         <ul className="p-0">
                             <a className="cursor-pointer text-decoration-none">
@@ -142,12 +142,12 @@ const Profile = ({}) => {
                         <div className="ml-3" style={{
                             'padding': '0 1rem',
                             'borderLeft': '1.25px solid rgb(10 10 10 / 25%)'}}>
-                            <h3 className="heading-red mb-1 break-word">About dasdasdasddadsadadsada
+                            <h3 className="heading-red mb-1 break-word">About
                                 {
                                     currentUser ?
-                                        <h3 className="heading-red mb-1">{currentUser.displayName}</h3>
+                                        <h3 className="heading-red mb-1">{sliceDisplayName(currentUser)}</h3>
                                         :
-                                        <h3 className="heading-red mb-1">No User Found</h3>
+                                        <h3 className="heading-red mb-1">No User</h3>
                                 }
                             </h3>
                             <h5 className="about-subHeading mt-2">Yelping Since</h5>

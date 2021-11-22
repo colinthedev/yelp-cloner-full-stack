@@ -1,9 +1,8 @@
 import React from 'react';
-import { useTheme } from '../../../src/util/Context/UserContext';
+import { Link } from 'react-router-dom';
 import './Nav.css';
 
-import { Link } from 'react-router-dom';
-import { auth } from '../../util/firebase/firebase.utils';
+import { useUserContext, useUserContextUpdate, useUserNameUpdate, useUserEmailUpdate } from '../../../src/util/Context/UserContext';
 
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Bell from './img/Bell.svg';
@@ -14,7 +13,12 @@ import Findfriends from './img/Findfriends.svg';
 import Accountsetting from './img/Accountsetting.svg';
 
 const Navmenu = ({}) => {
-    const currentUser = useTheme();
+    const currentUser = useUserContext(); // Current user
+    const toggleUser = useUserContextUpdate(); // Signout function
+    const sliceDisplayName = useUserNameUpdate(); // Window width less than (width) ? update displayName length
+    const sliceEmail = useUserEmailUpdate(); // Window width less than (width) ? update email length
+
+    console.log(currentUser) // Take this and make a tooptip to display full name and email?
 
     return (
         <div className='tc f3'>
@@ -39,16 +43,16 @@ const Navmenu = ({}) => {
                                 <img className='nav-img-sml me-2' src={Userprofile}></img>
                                 <div className="d-flex flex-column">
                                     {
-                                        currentUser ?
-                                            <span>{currentUser.displayName}</span>
+                                        currentUser ? 
+                                            <span>{sliceDisplayName(currentUser)}</span>
                                             :
-                                            <span>No User Found</span>
+                                            <span>No User</span>
                                     }
                                     {
                                         currentUser ?
-                                            <span>{currentUser.email}</span>
+                                            <span>{sliceEmail(currentUser)}</span>
                                             :
-                                            <span>No Email Found</span>
+                                            <span>No Email</span>
                                     }
                                 </div>
                             </div>
@@ -65,9 +69,9 @@ const Navmenu = ({}) => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item className="p-0">
                                 <div className="text-center options">
-                                    { // auth.signOut method provided from firebase library
+                                    {
                                         currentUser ?
-                                            <a className="option" onClick={() => auth.signOut()}>
+                                            <a className="option" onClick={toggleUser}>
                                                 Sign Out
                                             </a>
                                             :
@@ -84,3 +88,47 @@ const Navmenu = ({}) => {
 }
 
 export default Navmenu
+
+
+// const useWindowWidth = () => {
+//     const [width, setWidth] = useState(window.innerWidth)
+//     useEffect(() => {
+//         const handleResize = () => setWidth(window.innerWidth)
+//         window.addEventListener('resize', handleResize)
+//         return () => {
+//             window.removeEventListener('resize', handleResize)
+//         }
+//     })
+//     return width
+// }
+// const width = useWindowWidth();
+// console.log(width)
+
+// const sliceDisplayName = (currentUser) => {
+//     if (currentUser) {
+//         const tester = currentUser.displayName;
+//         if (width < 1440 && width >= 769) {
+//             return tester.substring(0, 14)
+//         } else if (width <= 768) {
+//             return tester.substring(0, 8)
+//         } else {
+//             return tester
+//         }
+//     } else (console.log("No user found :("))
+//     return currentUser
+// }
+// console.log(sliceDisplayName(currentUser))
+
+// const sliceEmail = (currentUser) => {
+//     if (currentUser) {
+//         const tester = currentUser.email;
+//         if (width < 1440 && width >= 769) {
+//             return tester.substring(0, 14)
+//         } else if (width <= 768) {
+//             return tester.substring(0, 8)
+//         } else {
+//             return tester
+//         }
+//     } else (console.log("No user found :("))
+// }
+// console.log(sliceEmail(currentUser))

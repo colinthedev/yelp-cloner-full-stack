@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BusinessList from '../../../src/components/BusinessList/BusinessList';
 import SearchBar from '../../../src/components/SearchBar/SearchBar';
 import Yelp from '../../util/Api/yelp';

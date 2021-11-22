@@ -3,7 +3,7 @@ import './BusinessList.css';
 import Business from '../Business/Business';
 
 const BusinessList = ({ business }) => {
-    console.log(business) 
+    // console.log(business) 
     return (
         <div className="BusinessList">
             {business.map(business => {
