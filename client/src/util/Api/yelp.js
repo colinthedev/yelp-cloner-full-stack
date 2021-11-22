@@ -1,4 +1,4 @@
-const { default: SearchBar } = require("../components/SearchBar/SearchBar");
+const { default: SearchBar } = require("../../components/SearchBar/SearchBar");
 
 const Yelp = {
     searchYelp(term, location) {

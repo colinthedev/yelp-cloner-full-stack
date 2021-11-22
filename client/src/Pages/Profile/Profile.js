@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import './Profile.css';
 
-import { UserContext } from "../../../src/components/App/App";
+import { useTheme } from '../../../src/util/Context/UserContext';
 
 const Profile = ({}) => {
-    const currentUser = useContext(UserContext)
+    const currentUser = useTheme();
 
     return (
         <div className="container-flex">

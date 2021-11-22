@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { UserContext } from "../../../src/components/App/App";
+import React from 'react';
+import { useTheme } from '../../../src/util/Context/UserContext';
 import './Nav.css';
 
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import Findfriends from './img/Findfriends.svg';
 import Accountsetting from './img/Accountsetting.svg';
 
 const Navmenu = ({}) => {
-    const currentUser = useContext(UserContext)
+    const currentUser = useTheme();
 
     return (
         <div className='tc f3'>
