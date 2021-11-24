@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 import './Nav.css';
 
 import { useUserContext, useUserContextUpdate, useUserNameUpdate, useUserEmailUpdate } from '../../../src/util/Context/UserContext';
@@ -24,7 +25,7 @@ const Navmenu = ({}) => {
         <div className='tc f3'>
             <Navbar bg='light' expand='lg'>
                 <a className="text-decoration-none" href="/">
-                    <Navbar.Brand className="mx-2 mx-lg-5">Yelp-Clone</Navbar.Brand>
+                    <Navbar.Brand className="mx-2 mx-lg-5">Home</Navbar.Brand>
                 </a>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -50,7 +51,7 @@ const Navmenu = ({}) => {
                                     }
                                     {
                                         currentUser ?
-                                            <span>{sliceEmail(currentUser)}</span>
+                                            <span className="tool-tip" data-tip={currentUser.email}>{sliceEmail(currentUser)}<ReactTooltip place="top" type="dark" effect="float" /></span>
                                             :
                                             <span>No Email</span>
                                     }
@@ -88,47 +89,3 @@ const Navmenu = ({}) => {
 }
 
 export default Navmenu
-
-
-// const useWindowWidth = () => {
-//     const [width, setWidth] = useState(window.innerWidth)
-//     useEffect(() => {
-//         const handleResize = () => setWidth(window.innerWidth)
-//         window.addEventListener('resize', handleResize)
-//         return () => {
-//             window.removeEventListener('resize', handleResize)
-//         }
-//     })
-//     return width
-// }
-// const width = useWindowWidth();
-// console.log(width)
-
-// const sliceDisplayName = (currentUser) => {
-//     if (currentUser) {
-//         const tester = currentUser.displayName;
-//         if (width < 1440 && width >= 769) {
-//             return tester.substring(0, 14)
-//         } else if (width <= 768) {
-//             return tester.substring(0, 8)
-//         } else {
-//             return tester
-//         }
-//     } else (console.log("No user found :("))
-//     return currentUser
-// }
-// console.log(sliceDisplayName(currentUser))
-
-// const sliceEmail = (currentUser) => {
-//     if (currentUser) {
-//         const tester = currentUser.email;
-//         if (width < 1440 && width >= 769) {
-//             return tester.substring(0, 14)
-//         } else if (width <= 768) {
-//             return tester.substring(0, 8)
-//         } else {
-//             return tester
-//         }
-//     } else (console.log("No user found :("))
-// }
-// console.log(sliceEmail(currentUser))

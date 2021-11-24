@@ -37,6 +37,25 @@
     padding: 0 .5rem 0 .5rem;
 }
 /* Overides End */
+@keyframes shake {
+  0% { 
+    transform: rotate(1deg);
+  }
+  50% {
+   transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.tool-tip:hover {
+    animation: shake 500ms ease-in-out forwards;
+}
 
 .options {
     font-family: 'Roboto', sans-serif;

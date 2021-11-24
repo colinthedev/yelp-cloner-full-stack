@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { useUserContext, useUserContextUpdate, useUserNameUpdate } from '../../../src/util/Context/UserContext';
 import './Profile.css';
 
@@ -20,7 +21,7 @@ const Profile = ({}) => {
                                     <div>
                                         {
                                             currentUser ?
-                                                <h2>{sliceDisplayName(currentUser)}</h2>
+                                                <h2 data-tip={currentUser.displayName}>{sliceDisplayName(currentUser)}<ReactTooltip place="top" type="dark" effect="float" /></h2>
                                                 :
                                                 <h2>No User</h2>
                                         }
@@ -139,13 +140,11 @@ const Profile = ({}) => {
                             <p className="font-14">We don't have any recent activity for you right now.</p>
                         </div>
                         <hr className="d-lg-none" style={{ color: '#0a0a0a' }}></hr>
-                        <div className="ml-3" style={{
-                            'padding': '0 1rem',
-                            'borderLeft': '1.25px solid rgb(10 10 10 / 25%)'}}>
+                        <div className="grey-line-break ml-3">
                             <h3 className="heading-red mb-1 break-word">About
                                 {
                                     currentUser ?
-                                        <h3 className="heading-red mb-1">{sliceDisplayName(currentUser)}</h3>
+                                        <h3 data-tip={currentUser.displayName} className="heading-red mb-1">{sliceDisplayName(currentUser)}<ReactTooltip place="top" type="dark" effect="float" /></h3>
                                         :
                                         <h3 className="heading-red mb-1">No User</h3>
                                 }
