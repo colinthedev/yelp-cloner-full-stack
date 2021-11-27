@@ -146,10 +146,12 @@ const SearchBar = (props) => {
             <div className="SearchBar-fields">
                 <input
                     onChange={handleTermChange}
+                    onKeyPress={(event) => event.key === 'Enter' && handleSearch(event)}
                     placeholder="Search Businesses"
                 />
                 <input
                     onChange={handleLocationChange}
+                    onKeyPress={(event) => event.key === 'Enter' && handleSearch(event)}
                     placeholder="Where?"
                 />
                 <button className="SearchBar-submit" onClick={handleSearch}>Let's Go</button>
