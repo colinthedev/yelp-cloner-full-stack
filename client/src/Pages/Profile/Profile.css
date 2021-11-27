@@ -58,21 +58,30 @@
     width: 12rem;
 }
 
+.profile-image-default {
+    background: url(./img/profilePIC.png);
+}
+
 .profile-image {
     position: absolute;
     top: 1.35rem;
     cursor: pointer;
-    background: url(./img/man.png);
     background-size: cover;
     background-position: center;
     background-color: #f5f5f5;
-    object-fit: contain;
+    object-fit: cover;
     height: 100px;
     width: 100px;
     margin-left: 5vw;
     border: 1px solid #dfdfdf;
     border-radius: 5px;
     z-index: 100;
+}
+
+.profile-image-default:hover,
+.profile-image:hover {
+    transform: rotate(-2deg) scale(1.015);
+    opacity: .90;
 }
 
 .bot-content-container {
@@ -204,6 +213,7 @@
 
     .profile-image {
         height: 200px;
+        /* If image no width */
         width: 200px;
         top: 2rem;
         margin-left: 0;
