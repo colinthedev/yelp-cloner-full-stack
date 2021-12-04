@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { UserContextProvider } from '../../../src/util/Context/UserContext'
+import { UserContextProvider } from '../../../src/Utilities/Context/UserContext'
 
 import Navmenu from '../Nav/Nav';
 import Home from '../../Pages/Home/Home';

@@ -1,9 +1,9 @@
 import React, { useState }  from 'react';
 
-import FormInput from '../../components/Form-input/form-input';
+import FormInput from '../../components/Form-input/Form-input';
 import CustomButton from '../../components/Custom-button/Custom-button';
 
-import { auth } from '../../util/firebase/firebase.utils';
+import { auth } from '../../Utilities/Firebase/Firebase.utils';
 import { Link } from 'react-router-dom';
 
 import './sign-in.css';

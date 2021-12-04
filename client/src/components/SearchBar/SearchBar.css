@@ -46,7 +46,8 @@
 }
 
 .SearchBar-fields input {
-  width: 30%;
+  width: 60%;
+  max-width: 30rem;
   padding: .66rem 1rem;
   margin: 0 0 1rem 0;
   border: 1px solid #fff;

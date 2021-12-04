@@ -37,6 +37,7 @@
     padding: 0 .5rem 0 .5rem;
 }
 /* Overides End */
+
 @keyframes shake {
   0% { 
     transform: rotate(1deg);
@@ -83,15 +84,34 @@
     display: block;
     height: 18px;
     width: 18px;
+    object-fit: contain;
+}
+
+.nav-img-sml {
+    display: block;
+    max-height: 63px;
+    max-width: 50px;
+    object-fit: contain;
 }
 
 .nav-img-lrg {
     display: block;
     height: 32px;
     width: 32px;
+    object-fit: contain;
 }
 
-@media only screen and (min-width: 768px) {
+/* Galaxy Fold */
+@media only screen 
+    and (width: 280px) {
+    .dropdown-menu.show {
+        left: -5rem;
+    }
+}
+
+/* All other mobile */
+@media only screen 
+    and (min-width: 992px) {
     .dropdown-menu.show {
         right: 20%;
         left: auto;
