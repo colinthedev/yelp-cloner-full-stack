@@ -1,0 +1,11 @@
+
+.no-background {
+    background: none;
+}
+
+.custom-banner {
+    background: none;
+    font-size: 14px;
+    letter-spacing: .30px;
+    font-weight: 300;
+}

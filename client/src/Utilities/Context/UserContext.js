@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, createUserProfileDocument } from "../firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "../Firebase/Firebase.utils";
 
 const UserContext = React.createContext(null);
 const UserUpdateContext = React.createContext();
@@ -29,6 +29,7 @@ export const useUserEmailUpdate = () => {
 export const UserContextProvider = ({ children }) => {
     const [currentUser, setUser] = useState(null);
     let unsubscribeFromAuth = null;
+    console.log(currentUser)
 
     useEffect(() => {
         unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -43,7 +44,6 @@ export const UserContextProvider = ({ children }) => {
                 });
             } else {
                 setUser(null)
-                // setUser({ currentUser: userAuth }) OBJECTS ARE TRUTHY 
             }
         });
 
@@ -51,6 +51,7 @@ export const UserContextProvider = ({ children }) => {
             unsubscribeFromAuth();
         };
     }, [])
+    // console.log(unsubscribeFromAuth)
 
     const toggleUser = () => {
         auth.signOut()
@@ -61,6 +62,7 @@ export const UserContextProvider = ({ children }) => {
     }
     // console.log(currentUser)
 
+    // Get current window width
     const useWindowWidth = () => {
         const [width, setWidth] = useState(window.innerWidth)
         useEffect(() => {
@@ -74,12 +76,13 @@ export const UserContextProvider = ({ children }) => {
     }
     const width = useWindowWidth();
 
+    // Slice off end of displayName if reaches a certain length
     const sliceDisplayName = (currentUser) => {
         if (currentUser) {
             const displayName = currentUser.displayName;
             return (
-                width >= 1441 ? displayName.substring(0, 16) + '...'
-                    : width <= 1440 && width >= 769 ? displayName.substring(0, 14) + '...'
+                width >= 1441 ? displayName.substring(0, 16) 
+                    : width <= 1440 && width >= 769 ? displayName.substring(0, 14) 
                         : width <= 768 ? displayName.substring(0, 7) + '...'
                             : displayName
             )
@@ -87,6 +90,7 @@ export const UserContextProvider = ({ children }) => {
     }
     // console.log(sliceDisplayName(currentUser))
 
+    // Slice off end of email if reaches a certain length
     const sliceEmail = (currentUser) => {
         if (currentUser) {
             const email = currentUser.email;

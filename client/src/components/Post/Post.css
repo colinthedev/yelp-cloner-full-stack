@@ -1,0 +1,61 @@
+
+.post-title-default {
+    font-size: 14px;
+}
+
+.post-title {
+    font-size: 14px;
+    inline-size: 230px;
+    /* inline-size: 300px; */
+    overflow-wrap: break-word;
+}
+
+.thumbnail-img {
+    display: block;
+    object-fit: contain;
+    height: 60px;
+    width: 60px;
+}
+
+.post-image {
+    display: block;
+    object-fit: contain;
+    height: 250px;
+    width: 250px;
+}
+
+/* Galaxy Fold */
+@media only screen
+    and (min-device-width: 280px)
+    and (max-device-width: 280px) {
+    .ml-auto {
+        margin-left: 30%;
+    }
+
+    .post-title {
+        inline-size: 130px;
+    }
+}
+
+/* Mobile landscape */
+@media only screen 
+     and (min-device-width: 480px) 
+     and (max-device-width: 900px) 
+     and (orientation: landscape) {
+
+    .post-image {
+        height: 350px;
+        width: 350px;
+    }
+   
+    .post-title {
+        inline-size: 300px;
+    }
+}
+
+/* All other mobile */
+@media only screen and (min-width: 768px) {
+    .post-title {
+        inline-size: 300px;
+    }
+}
