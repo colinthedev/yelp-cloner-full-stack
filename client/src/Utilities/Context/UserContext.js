@@ -28,10 +28,10 @@ export const useUserEmailUpdate = () => {
 
 export const UserContextProvider = ({ children }) => {
     const [currentUser, setUser] = useState(null);
-    let unsubscribeFromAuth = null;
-    console.log(currentUser)
+    // let unsubscribeFromAuth = null; // moved into useEffect per terminal error
 
     useEffect(() => {
+        let unsubscribeFromAuth = null;
         unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
             if (userAuth) {
                 const userRef = await createUserProfileDocument(userAuth);

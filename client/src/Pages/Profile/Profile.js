@@ -1,64 +1,26 @@
-// MORE EXPLICIT VERSION OF BELOW METHOD
-    // // Listen for state changes, errors, and completion of the upload.
-    // const handleUpload = () => {
-    //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    //     uploadTask.on('state_changed',
-    //         (snapshot) => { console.log(snapshot) },
-    //         (error) => {
-    //             switch (error.code) {
-    //                 case 'storage/unauthorized':
-    //                     break;
-    //                 case 'storage/canceled':
-    //                     break;
-    //                 case 'storage/unknown':
-    //                     break;
-    //             }
-    //         },
-    //         (e) => {
-    //             storage
-    //                 .ref("images")
-    //                 .child(image.name)
-    //                 .getDownloadURL(uploadTask.snapshot.ref)
-    //                 .then(url => {
-    //                     setUrl(url);
-    //                     console.log('File available at', url);
-    //                 })
-    //         }
-    //     );
-    // }
-    // console.log("image: ", image);
-    // console.log(image.lastModifiedDate) // Image date uploaded. image.lastmodifiedDate === undefined ? 
-    // console.log(url)
-
-// TESTING POINT RECENT ACTIVITY
 import React, { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
-// import { useUserContext, useUserNameUpdate } from '../../Utilities/Context/UserContext';
-import { useUserContext, useUserContextUpdate, useUserNameUpdate } from '../../Utilities/Context/UserContext';
+import { useUserContext, useUserNameUpdate } from '../../Utilities/Context/UserContext';
 import { storage, firestore } from "../../Utilities/Firebase/Firebase.utils";
-// import { ref, uploadBytesResumable } from "firebase/storage"; 
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; 
+import usePhotoCountHook from '../../Utilities/Count/Count';
+import { ref, uploadBytesResumable } from "firebase/storage"; 
 import Post from '../../../src/components/Post/Post';
 import CustomButton from '../../components/Custom-button/Custom-button';
-import useOrderCountHook from '../../Utilities/Count/Count';
+import TimeStamp from '../../components/TimeStamp/TimeStamp';
 
 import ProfilePic from './img/profilePICN.svg';
-import TimeStamp from '../../components/TimeStamp/TimeStamp';
-import userRef from '../../Utilities/Firebase/Firebase.utils';
-
 import './Profile.css';
 
 const Profile = () => {
     const currentUser = useUserContext(); // Current user
     const sliceDisplayName = useUserNameUpdate(); // Window width < (width) ? update displayName length
-    const orderHook = useOrderCountHook(); // Photo count hook
+    const photoCountHook = usePhotoCountHook(); // Photo count hook
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
 
     const metadata = { contentType: 'image/jpeg' };
     const storageRef = ref(storage, 'images/' + image.name);
     const uploadTask = uploadBytesResumable(storageRef, image, metadata);
-    // console.log(url, storageRef, currentUser)
 
     // Listen for state changes, errors, and completion of the upload.
     const handleUpload = () => {
@@ -98,7 +60,7 @@ const Profile = () => {
     const handleUploadChange = e => { 
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
-        }        
+        }
     };
     
     const currentTime = currentUser ? currentUser.createdAt.seconds : ''; // Current user time profile created
@@ -130,8 +92,7 @@ const Profile = () => {
                                     accept="image/*"
                                     name="image"
                                     id="file"
-                                    onChange={handleUploadChange, orderHook.changeOrderCount}
-                                    // onChange={() => {handleUploadChange(); orderHook.changeOrderCount()}}
+                                    onChange={e => { photoCountHook.changePhotoCount(e); handleUploadChange(e) }}
                                     onClick={handleUploadChange}
                                     style={{ display: "none" }}
                                 />
@@ -142,9 +103,9 @@ const Profile = () => {
                                 <img
                                     className="profile-image d-block"
                                     src={currentUser && currentUser.photoURL ? currentUser.photoURL : ProfilePic}
-                                    alt=""
+                                    alt="Profile picture"
                                     data-for='makeitspec'
-                                    data-tip="Click me to update profile picture!" />
+                                    data-tip={currentUser && currentUser.photoURL ? "Click me to update profile picture!" : "Sign in to upload profile picture!"} />
                                 <ReactTooltip id='makeitspec' place="top" type="dark" effect="float" />
                             </>
                         </label>
@@ -176,8 +137,12 @@ const Profile = () => {
                                             <span className="banner-list-font mx-1">0 reviews</span>
                                         </div>
                                         <div className="">
-                                            <i className="bi bi-camera"></i>
-                                            <span className="banner-list-font mx-1">{orderHook.orderCount.count} photos</span>
+                                            <i className="bi bi-camera"></i>                              
+                                            {photoCountHook.photoCount === undefined || photoCountHook.photoCount === null ?
+                                                <span className="banner-list-font mx-1">0 photos</span> 
+                                                :
+                                                <span className="banner-list-font mx-1">{photoCountHook.photoCount.count} photos</span>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -307,12 +272,6 @@ const Profile = () => {
                                     <TimeStamp date={currentUser ? timeConverter(currentTime) : ''} locale="en-US" />
                                 : 'No user found.'
                             }
-                            {/* {
-                                undefined ?
-                                'No user found.'
-                                :
-                                <TimeStamp date={currentUser ? timeConverter(currentTime) : ''} locale="en-US" />
-                            } */}
                             <h5 className="about-subHeading mt-3">Things I Love</h5>
                             <p className="font-14">You haven't said yet...</p>
                         </div>
@@ -324,15 +283,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-
-
-
-
-
-
-
-

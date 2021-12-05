@@ -2,6 +2,7 @@ import React from "react";
 import './Business.css';
 
 const Business = ({ business }) => {
+    console.log(business)
     return (
         <div className="Business">
             <div className="image-container">
