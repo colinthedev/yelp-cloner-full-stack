@@ -177,7 +177,7 @@ const Profile = () => {
                                                         className="banner-list-font mx-1 button-underline"
                                                         type="button"
                                                         onClick={handleShow}>
-                                                        {imagesLength} photos
+                                                        <span className="inner">{imagesLength} photos</span>
                                                     </button>
                                                     :
                                                     <span className="banner-list-font mx-1">0 photos</span>

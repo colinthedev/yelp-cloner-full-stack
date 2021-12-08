@@ -4,7 +4,8 @@ import './Business.css';
 import Stars from './img/Stars.svg';
 
 const Business = ({ business }) => {
-    console.log(business)
+    // console.log(business.rating)
+    
     return (
         <div className="business position-relative d-flex flex-column">
             <div className="image-container">

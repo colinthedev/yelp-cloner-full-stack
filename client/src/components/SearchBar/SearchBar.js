@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import './SearchBar.css';
 
 const SearchBar = (props) => {
-    console.log(props)
+    // console.log(props)
     const [searchSort, setSearchSort] = useState({ sortBy: 'best_match' });
     const [searchTerm, setSearchTerm] = useState({ term: '' });
     const [searchLocale, setSearchLocale] = useState({ location: '' });

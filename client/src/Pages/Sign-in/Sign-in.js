@@ -45,7 +45,7 @@ const SignIn = () => {
             <div className="d-flex flex-column mt-4">
                 <h2 className="sign-in-font-heading">Already have an account?</h2>
                 <span className="sign-in-font mb-1">Sign in here with your email and password.</span>
-                <span className="sign-in-font light-font">Test user - bbp@aol.com password</span>
+                <span className="sign-in-font light-font">Test user - spiderman@aol.com Password</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <FormInput
