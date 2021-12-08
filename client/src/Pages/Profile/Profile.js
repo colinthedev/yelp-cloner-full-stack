@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useUserContext, useUserNameUpdate } from '../../Utilities/Context/UserContext';
 import { storage, firestore } from "../../Utilities/Firebase/Firebase.utils";
-import usePhotoCountHook from '../../Utilities/Count/Count';
-import { ref, uploadBytesResumable } from "firebase/storage";
+import { ref, uploadBytesResumable, listAll, getStorage } from "firebase/storage";
 import Post from '../../../src/components/Post/Post';
 import UserImagesGallery from '../../components/UserImagesGallery/UserImagesGallery';
 import CustomButton from '../../components/Custom-button/Custom-button';
@@ -12,14 +11,9 @@ import TimeStamp from '../../components/TimeStamp/TimeStamp';
 import ProfilePic from './img/profilePICN.svg';
 import './Profile.css';
 
-import { getStorage, list, listAll } from "firebase/storage";
-import { auth, createUserProfileDocument } from "../../Utilities/Firebase/Firebase.utils";
-import '../../components/UserImagesGallery/UserImagesGallery.css';
-
 const Profile = () => {
     const currentUser = useUserContext(); // Current user
     const sliceDisplayName = useUserNameUpdate(); // Window width < (width) ? update displayName length
-    const photoCountHook = usePhotoCountHook(); // Photo count hook
     const [image, setImage] = useState(""); // Profile image
     const [url, setUrl] = useState(""); // Image URL
 
@@ -30,8 +24,6 @@ const Profile = () => {
     const [images, setImages] = useState([]); // All user images from storage
     const [loading, setLoading] = useState(false);
     const imagesLength = images.length
-    console.log(imagesLength)
-    // const showHideClassName = show ? "modal display-block" : "modal display-none";
 
     // Listen for state changes, errors, and completion of the upload.
     const handleUpload = () => {
@@ -133,7 +125,7 @@ const Profile = () => {
                                     accept="image/*"
                                     name="image"
                                     id="file"
-                                    onChange={e => { photoCountHook.changePhotoCount(e); handleUploadChange(e) }}
+                                    onChange={handleUploadChange}
                                     onClick={handleUploadChange}
                                     style={{ display: "none" }}
                                 />
@@ -179,23 +171,16 @@ const Profile = () => {
                                         </div>
                                         <div className="">
                                             <i className="bi bi-camera"></i>
-                                            {currentUser ?                                                
-                                                <button
-                                                    className="banner-list-font mx-1 button-underline"
-                                                    type="button"
-                                                    onClick={handleShow}>
-                                                    {imagesLength} photos
-                                                </button>
-                                                :
-                                                <span className="banner-list-font mx-1">0 photos</span>
-
-                                        
-                                                // <button
-                                                //     className="banner-list-font mx-1"
-                                                //     type="button"
-                                                //     onClick={handleShow}>
-                                                //     {photoCountHook.photoCount.count} photos
-                                                // </button>
+                                            {
+                                                currentUser ?                                                
+                                                    <button
+                                                        className="banner-list-font mx-1 button-underline"
+                                                        type="button"
+                                                        onClick={handleShow}>
+                                                        {imagesLength} photos
+                                                    </button>
+                                                    :
+                                                    <span className="banner-list-font mx-1">0 photos</span>
                                             }
                                             <UserImagesGallery
                                                 loading={loading}
