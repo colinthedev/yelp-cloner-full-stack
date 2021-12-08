@@ -6,9 +6,7 @@ const CustomButton = ({ children, noBackground, ...otherProps }) => {
     // console.log('children: ', children);
     // console.log('otherProps: ', otherProps);
     return (
-        <button
-            className={`${noBackground ? 'no-background' : 'custom-button'}`} {...otherProps}
-        >
+        <button className={`${noBackground ? 'no-background' : 'custom-button'}`} {...otherProps}>
             {children}
         </button>
     )
