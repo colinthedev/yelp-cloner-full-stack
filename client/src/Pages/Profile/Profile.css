@@ -11,9 +11,14 @@
     margin-right: 0;
 }
 
+.button-underline {
+    border: none;
+    text-decoration: underline solid 2px #ED1D24;
+}
+
 /* Font */
 .heading-red {
-    color: #d32323;
+    color: #ED1D24;
     font-weight: 600;
     font-size: 21px;
 }
@@ -36,6 +41,12 @@
 .sidebar-list-font {
     font-size: 14px;
     color: #0a0a00;
+}
+
+.No-user-timestamp {
+    font-size: 14px;
+    letter-spacing: .30px;
+    font-weight: 300;
 }
 
 .break-word-always {
@@ -197,10 +208,7 @@
     }
 
     .m-l-3 {
-        margin-right: 3.85rem;
-       
-        /* 1445px
-        margin-right: 15%; */
+        margin-right: 4.9rem;
     }
 
     .break-word {
@@ -228,15 +236,8 @@
 
     .profile-image {
         height: 200px;
-        /* If image no width */
         width: 200px;
         top: 2rem;
         margin-left: 0;
-    }
-}
-
-@media only screen and (min-width: 1445px) {
-    .m-l-3 {
-        margin-right: 15%; 
     }
 }

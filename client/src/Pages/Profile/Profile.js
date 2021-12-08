@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useUserContext, useUserNameUpdate } from '../../Utilities/Context/UserContext';
 import { storage, firestore } from "../../Utilities/Firebase/Firebase.utils";
 import usePhotoCountHook from '../../Utilities/Count/Count';
-import { ref, uploadBytesResumable } from "firebase/storage"; 
+import { ref, uploadBytesResumable } from "firebase/storage";
 import Post from '../../../src/components/Post/Post';
+import UserImagesGallery from '../../components/UserImagesGallery/UserImagesGallery';
 import CustomButton from '../../components/Custom-button/Custom-button';
 import TimeStamp from '../../components/TimeStamp/TimeStamp';
 
 import ProfilePic from './img/profilePICN.svg';
 import './Profile.css';
 
+import { getStorage, list, listAll } from "firebase/storage";
+import { auth, createUserProfileDocument } from "../../Utilities/Firebase/Firebase.utils";
+import '../../components/UserImagesGallery/UserImagesGallery.css';
+
 const Profile = () => {
     const currentUser = useUserContext(); // Current user
     const sliceDisplayName = useUserNameUpdate(); // Window width < (width) ? update displayName length
     const photoCountHook = usePhotoCountHook(); // Photo count hook
-    const [image, setImage] = useState("");
-    const [url, setUrl] = useState("");
+    const [image, setImage] = useState(""); // Profile image
+    const [url, setUrl] = useState(""); // Image URL
 
-    const metadata = { contentType: 'image/jpeg' };
-    const storageRef = ref(storage, 'images/' + image.name);
-    const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+    const [showModal, setShow] = useState(false); // Modal
+    const handleClose = () => setShow(false); // Modal
+    const handleShow = () => setShow(true); // Modal
+
+    const [images, setImages] = useState([]); // All user images from storage
+    const [loading, setLoading] = useState(false);
+    const imagesLength = images.length
+    console.log(imagesLength)
+    // const showHideClassName = show ? "modal display-block" : "modal display-none";
 
     // Listen for state changes, errors, and completion of the upload.
     const handleUpload = () => {
+        const uploadTask = storage.ref(`images/${currentUser.id}/${image.name}`).put(image);
         uploadTask.on('state_changed',
             (snapshot) => { console.log(snapshot) },
             (error) => {
@@ -34,14 +46,13 @@ const Profile = () => {
                         break;
                     case 'storage/unknown':
                         break;
-                    default:
-                        console.log(error);
                 }
             },
-            () => {
+            (e) => {
                 storage
-                    .ref('images/')
-                    .child(image.name)
+                    .ref('images') // Start with images folder path
+                    .child(currentUser.id) // Get the userID
+                    .child(image.name) // Then the image url
                     .getDownloadURL(uploadTask.snapshot.ref)
                     .then(async (url) => {
                         setUrl(url);
@@ -50,20 +61,46 @@ const Profile = () => {
                             photoURL: url
                         });
                         console.log('File available at', url);
-                    })
+                    }).catch(error => console.log(error))
             }
         );
     }
     // console.log("image: ", image);
-    // console.log(image.lastModifiedDate) 
+    // console.log(image.lastModifiedDate)
 
-    const handleUploadChange = e => { 
+    useEffect(() => {
+        if (currentUser) {
+            const fetchImages = async () => {
+                const result = await storage.ref(`images/${currentUser.id}`).listAll();
+                const urlPromises = result.items.map((imageRef) =>
+                    imageRef.getDownloadURL()
+                );
+                return Promise.all(urlPromises);
+            };
+
+            const loadImages = async () => {
+                setLoading(true);
+                try {
+                    const images = await fetchImages();
+                    setImages(images);
+                } catch (error) {console.log(error)}
+                setLoading(false);
+            };
+            loadImages();
+        } else {
+            setImages([]);
+        }
+    }, [currentUser]);
+
+    // User profile image upload
+    const handleUploadChange = e => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
         }
     };
-    
-    const currentTime = currentUser ? currentUser.createdAt.seconds : ''; // Current user time profile created
+
+    // Current user time profile created
+    const currentTime = currentUser ? currentUser.createdAt.seconds : '';
     function timeConverter(currentTime) {
         if (currentUser) {
             let a = new Date(currentTime * 1000);
@@ -77,6 +114,10 @@ const Profile = () => {
             let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
             return time;
         }
+    }
+
+    if (loading) {
+        return <p>Data is loading...</p>
     }
 
     return (
@@ -98,7 +139,7 @@ const Profile = () => {
                                 />
                                 : ''
                         }
-                        <label for="file">  
+                        <label for="file">
                             <>
                                 <img
                                     className="profile-image d-block"
@@ -137,12 +178,34 @@ const Profile = () => {
                                             <span className="banner-list-font mx-1">0 reviews</span>
                                         </div>
                                         <div className="">
-                                            <i className="bi bi-camera"></i>                              
-                                            {photoCountHook.photoCount === undefined || photoCountHook.photoCount === null ?
-                                                <span className="banner-list-font mx-1">0 photos</span> 
+                                            <i className="bi bi-camera"></i>
+                                            {currentUser ?                                                
+                                                <button
+                                                    className="banner-list-font mx-1 button-underline"
+                                                    type="button"
+                                                    onClick={handleShow}>
+                                                    {imagesLength} photos
+                                                </button>
                                                 :
-                                                <span className="banner-list-font mx-1">{photoCountHook.photoCount.count} photos</span>
+                                                <span className="banner-list-font mx-1">0 photos</span>
+
+                                        
+                                                // <button
+                                                //     className="banner-list-font mx-1"
+                                                //     type="button"
+                                                //     onClick={handleShow}>
+                                                //     {photoCountHook.photoCount.count} photos
+                                                // </button>
                                             }
+                                            <UserImagesGallery
+                                                loading={loading}
+                                                images={images}
+                                                image={image}
+                                                key={image}
+                                                show={showModal}
+                                                handleClose={handleClose}>
+                                            </UserImagesGallery>
+               
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +333,8 @@ const Profile = () => {
                             {
                                 currentUser ?
                                     <TimeStamp date={currentUser ? timeConverter(currentTime) : ''} locale="en-US" />
-                                : 'No user found.'
+                                    :
+                                    <p className="No-user-timestamp">No user found</p>
                             }
                             <h5 className="about-subHeading mt-3">Things I Love</h5>
                             <p className="font-14">You haven't said yet...</p>
