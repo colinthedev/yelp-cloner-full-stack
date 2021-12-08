@@ -174,10 +174,10 @@ const Profile = () => {
                                             {
                                                 currentUser ?                                                
                                                     <button
-                                                        className="banner-list-font mx-1 button-underline"
+                                                        className="mx-1 button-underline"
                                                         type="button"
                                                         onClick={handleShow}>
-                                                        <span className="inner">{imagesLength} photos</span>
+                                                        <span className="banner-photo-font">{imagesLength} photos</span>
                                                     </button>
                                                     :
                                                     <span className="banner-list-font mx-1">0 photos</span>
