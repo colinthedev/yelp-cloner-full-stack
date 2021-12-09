@@ -75,7 +75,7 @@ const Profile = () => {
                 try {
                     const images = await fetchImages();
                     setImages(images);
-                } catch (error) {console.log(error)}
+                } catch (error) { console.log(error) }
                 setLoading(false);
             };
             loadImages();
@@ -143,11 +143,11 @@ const Profile = () => {
                             </>
                         </label>
                     </div>
-                    <div className="d-flex flex-column flex-lg-row align-items-lg-center w-lg-75 m-l-4">
+                    <div className="d-flex flex-column flex-lg-row align-items-lg-center w-lg-75 m-l-4  ">
                         <div className="d-flex flex-column flex-lg-row ml-auto pr-1 m-r-md-vw">
                             <div className="m-r-md">
                                 <div className="d-flex flex-column w-100 m-r-7">
-                                    <div>
+                                    <div className="min-width-lrg-scrn">
                                         {
                                             currentUser ?
                                                 <h2
@@ -172,7 +172,7 @@ const Profile = () => {
                                         <div className="">
                                             <i className="bi bi-camera"></i>
                                             {
-                                                currentUser ?                                                
+                                                currentUser ?
                                                     <button
                                                         className="mx-1 button-underline"
                                                         type="button"
@@ -190,7 +190,7 @@ const Profile = () => {
                                                 show={showModal}
                                                 handleClose={handleClose}>
                                             </UserImagesGallery>
-               
+
                                         </div>
                                     </div>
                                 </div>
