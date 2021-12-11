@@ -4,7 +4,7 @@
 }
 
 .m-r-7 {
-    margin-right: 7.25rem;
+    margin-right: 0rem;
 }
 
 .m-r-md-vw  {
@@ -14,6 +14,11 @@
 .button-underline {
     border: none;
     text-decoration: underline solid 2px #ED1D24;
+    text-decoration-line: underline;
+    text-decoration-color: #ED1D24;
+    background-color: transparent;
+    -webkit-text-decoration-line: underline;
+    -webkit-text-decoration-color: #ed1d24;
 }
 
 /* Font */
@@ -221,6 +226,14 @@
 /* Desktop large and laptop */
 /* 1024 */
 @media only screen and (min-width: 992px) {
+    .min-width-lrg-scrn {
+        width: 370px;
+    }
+
+    .m-r-7 {
+        margin-right: 4rem;
+    }
+
     .m-l-4 {
         margin-left: 4rem; 
     }
