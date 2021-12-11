@@ -33,12 +33,6 @@
   margin-top: 2rem;
 }
 
-.gallery-image {
-  height: 200px;
-  width: 200px;
-  object-fit: contain;
-}
-
 .x-close-btn {
   right: .5rem;
   font-size: 30px;
@@ -57,6 +51,10 @@
 /* ANIMATION */
 .gallery-image {
   left: 50%;
+  height: 200px;
+  width: 200px;
+  margin-top: 1.60rem;
+  object-fit: cover;
   transform: translate3d(0, 0, 0);
   animation: zoomin 1s ease;
   transition: all 1.5s ease;
