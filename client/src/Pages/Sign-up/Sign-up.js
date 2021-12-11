@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import FormInput from '../../components/Form-input/Form-input';
+import FormInput from '../../components/Form-input/form-input';
 import CustomButton from '../../components/Custom-button/Custom-button';
 
 import { auth, createUserProfileDocument } from '../../Utilities/Firebase/Firebase.utils';
