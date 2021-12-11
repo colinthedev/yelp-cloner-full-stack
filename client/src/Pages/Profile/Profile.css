@@ -4,7 +4,7 @@
 }
 
 .m-r-7 {
-    margin-right: 7.25rem;
+    margin-right: 0rem;
 }
 
 .m-r-md-vw  {
@@ -226,6 +226,14 @@
 /* Desktop large and laptop */
 /* 1024 */
 @media only screen and (min-width: 992px) {
+    .min-width-lrg-scrn {
+        width: 370px;
+    }
+
+    .m-r-7 {
+        margin-right: 4rem;
+    }
+
     .m-l-4 {
         margin-left: 4rem; 
     }
