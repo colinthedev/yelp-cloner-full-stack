@@ -14,6 +14,11 @@
 .button-underline {
     border: none;
     text-decoration: underline solid 2px #ED1D24;
+    text-decoration-line: underline;
+    text-decoration-color: #ED1D24;
+    background-color: transparent;
+    -webkit-text-decoration-line: underline;
+    -webkit-text-decoration-color: #ed1d24;
 }
 
 /* Font */
