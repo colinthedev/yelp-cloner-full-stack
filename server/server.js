@@ -35,4 +35,4 @@ app.get('/api/hello', (req, res) => {
         });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(process.env.PORT || 2000, () => console.log(`Listening on port ${port}`))
