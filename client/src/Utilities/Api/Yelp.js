@@ -2,7 +2,7 @@ const { default: SearchBar } = require("../../components/SearchBar/SearchBar");
 
 const Yelp = {
     searchYelp(term, location) {
-        return fetch(`https://api/hello?term=${term}&location=${location}`)
+        return fetch(`https://agile-spire-07157.herokuapp.com/api/hello?term=${term}&location=${location}`)
             .then((response) => {
                 // console.log(response)
                 return response.json()
